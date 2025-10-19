@@ -25,7 +25,10 @@ public class Batalha {
         // Acionar todos os efeitos de todos os personagens
         for (Personagem personagem : personagens) {
             for (IStatusEffect effect : personagem.getEeitos()) {
-                effect.efeito(personagem);
+                System.out.println(personagem + " - " + effect);
+                if (effect != null) {
+                    effect.efeito(personagem);
+                }
             }
         }
 

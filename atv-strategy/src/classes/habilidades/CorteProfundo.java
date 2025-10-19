@@ -4,29 +4,22 @@ import java.util.Random;
 
 import classes.efeitos.Sangramento;
 import classes.personagens.Personagem;
-import interfaces.IHabilidade;
 import interfaces.IStatusEffect;
 
-public class CorteProfundo implements IHabilidade {
+public class CorteProfundo extends Habilidade {
 
     protected int turnosRestantes;
     protected IStatusEffect efeito;
 
     public CorteProfundo() {
-        this.efeito = new Sangramento();
+        super(new Sangramento());
     }
 
     @Override
     public void hab(Personagem p) {
         // Se ja tiver o efeito volta
-        for (IStatusEffect effect : p.getEeitos()) {
-            if (effect.getClass().isInstance(efeito)) {
-                if (turnosRestantes > 0) {
-                    return ;
-                }
-
-                p.removeEfeito(effect);
-            }
+        if (this.checarTurnos(p)) {
+            return;
         }
 
         Random r = new Random();

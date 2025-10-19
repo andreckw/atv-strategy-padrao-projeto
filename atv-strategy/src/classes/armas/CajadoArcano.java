@@ -1,15 +1,17 @@
 package classes.armas;
 
+import classes.habilidades.BolaDeFogo;
 import classes.personagens.Personagem;
 
 public class CajadoArcano extends Arma {
 
     public CajadoArcano() {
-        super(8, null);
+        super(8, new BolaDeFogo());
     }
 
     @Override
     public double dano(Personagem p) {
+        this.getHabilidade().hab(p);
         return this.getDanoBase() + this.getDanoAdicional();
     }
 
